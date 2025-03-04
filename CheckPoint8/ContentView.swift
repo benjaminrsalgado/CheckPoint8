@@ -22,3 +22,22 @@ struct ContentView: View {
 #Preview {
     ContentView()
 }
+
+protocol Persona {
+    var nombre: String { get }
+    func decirHola()
+}
+
+extension Persona {  // ✅ Implementación predeterminada
+    func decirHola() {
+        print("Hola, soy \\(nombre)")
+    }
+}
+
+struct Empleado: Persona {  // ❌ No necesita escribir decirHola()
+    let nombre: String
+}
+
+let empleado = Empleado(nombre: "Carlos")
+empleado.decirHola() // Imprime: Hola, soy Carlos
+
