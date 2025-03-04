@@ -23,21 +23,33 @@ struct ContentView: View {
     ContentView()
 }
 
-protocol Persona {
-    var nombre: String { get }
-    func decirHola()
+
+protocol Edificio {
+    var habitaciones: Int { get set}
+    var costo: Int { get set }
+    var agenteMoviliario: String { get }
+    func resumen()
 }
 
-extension Persona {  // ✅ Implementación predeterminada
-    func decirHola() {
-        print("Hola, soy \\(nombre)")
+extension Edificio {
+    func resumen() {
+        print(" Esta es  un \(type(of:self)) el vendedor es \(agenteMoviliario) esta propiedad cuenta con \(habitaciones) habitaciones y tiene un costo de \(costo)")
     }
 }
 
-struct Empleado: Persona {  // ❌ No necesita escribir decirHola()
-    let nombre: String
+struct Casa: Edificio {
+    var habitaciones : Int
+    var costo: Int
+    var agenteMoviliario: String
 }
 
-let empleado = Empleado(nombre: "Carlos")
-empleado.decirHola() // Imprime: Hola, soy Carlos
+struct Oficina: Edificio {
+    var habitaciones : Int
+    var costo: Int
+    var agenteMoviliario: String
+}
+
+let paraCasa = Casa(habitaciones: 6, costo: 2000000, agenteMoviliario: "Pedro Sanches")
+let paraOficina = Oficina(habitaciones: 1, costo: 100000, agenteMoviliario: "Pedro Sanches")
+
 
